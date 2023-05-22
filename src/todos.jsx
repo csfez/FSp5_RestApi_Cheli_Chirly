@@ -71,7 +71,7 @@ const ToDo = ({ data, updateElement }) => {
   };
 
   return (
-    <label>
+    <label className='todos'>
       <input type="checkbox" checked={data.completed} onChange={handleCheckboxChange} />
       {data.title}
     </label>

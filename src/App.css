@@ -207,3 +207,40 @@ button {
 button:hover {
   background-color: #d4ccb2;
 }
+
+/* todos */
+/* .todos {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  /* margin-bottom: 10px;
+  background-color: #ffffffbd;
+  box-shadow: 0 0 8px 0 rgb(110, 110, 110);
+
+} */
+
+.todos {
+  /* display: auto; */
+  /* align-items: center; */
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #ffffffbd;
+  border-radius: 5px;
+  box-shadow: 0 0 8px 0 rgb(110, 110, 110);
+
+}
+
+.todos input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.todos label {
+  font-size: 16px;
+  color: #333;
+}
+
+.todos label.completed {
+  text-decoration: line-through;
+  color: #999;
+}
