@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams ,useLocation} from "react-router-dom";
 import './App.css'
 
-const Info = () => {
-
+export default function Info() {
   const [items, setItems] = useState([]);
-  const { id, postid } = useParams();
+  const { id} = useParams();
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users`)
+    fetch(`https://jsonplaceholder.typicode.com/users?id=${id}`)
       .then(response => response.json())
       .then(json => setItems(json))
   }, []);
@@ -84,4 +83,4 @@ const Info = () => {
     );
   };
   
-  export default Info;
+  // export default Info;

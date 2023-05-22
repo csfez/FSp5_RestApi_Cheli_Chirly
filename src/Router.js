@@ -14,36 +14,42 @@ import Albums from './albums';
 import Info from './info';
 import NoPage from "./pages/NoPage";
 import SignIn from "./signIn";
-import Comments from "./comments"
+import Comments from "./comments";
+import Album from "./photos";
 
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [items,setItems]=useState([])
-  const [resourceType,setResourceType]= useState('')
+  const [resourceType,setResourceType]= useState(null)
 
   useEffect(()=> {
-    fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
+    if(resourceType){
+       fetch(`https://jsonplaceholder.typicode.com/${resourceType}`)
       .then(response => response.json())
       .then(json => setItems(json))
+      .catch(error=>console.log(error))
+    }
+   
   },[resourceType])
 
   return (
     <BrowserRouter>
       <Routes>
         {/* Ajouter une redirection depuis la racine vers la page de connexion */}
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<SignIn setIsLoggedIn={setIsLoggedIn}/>} />
-          <Route path="users/:id/" element={<Layers/>}>
-            <Route path="info" element={<Info />} />
-            <Route path="todos" onClick={()=>setResourceType('todos')} element={<Todos items={items}/>} />
-            <Route path="posts" onClick={()=>setResourceType('posts')} element={<Posts  items={items}/>} />
-            <Route path="posts/:postid/" element={<Posts />} >
-              <Route path="comments" element={<Comments items={items}/>} />
-            </Route>
-            <Route path="albums" onClick={()=>setResourceType('albums')} element={<Albums  items={items}/>} />
-            <Route path="info" element={<Info  items={items}/>} />
-            <Route path="*" element={<NoPage />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<SignIn setIsLoggedIn={setIsLoggedIn}/>} />
+        <Route path="users/:id/" element={<Layers/>}>
+          <Route path="info" element={<Info />} />
+          <Route path="todos" onClick={()=>setResourceType('todos')} element={<Todos items={items}/>} />
+          <Route path="posts" onClick={()=>setResourceType('posts')} element={<Posts  items={items}/>} />
+          <Route path="posts/:postid/" element={<Posts />} >
+            <Route path="comments" element={<Comments items={items}/>} />
+          </Route>
+          <Route path="albums" element={<Albums />} />
+          <Route path="albums/:albumId/photos" element={<Album />} />
+          <Route path="info" element={<Info  items={items}/>} />
+          <Route path="*" element={<NoPage />} />
          </Route>
         
       </Routes>
