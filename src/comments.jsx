@@ -1,5 +1,6 @@
 import { useParams ,useLocation} from "react-router-dom";
 import React, { useState, useEffect  } from 'react';
+import './App.css'
 
 const Comments = () => {
   const { id, postid } = useParams();

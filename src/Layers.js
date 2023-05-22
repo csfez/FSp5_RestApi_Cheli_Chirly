@@ -1,7 +1,8 @@
 import { Outlet, Link, useParams } from "react-router-dom";
 import React,{useState,createContext, useEffect} from 'react';
 import {  useNavigate } from "react-router-dom";
-import SignIn from "./signIn";
+import './App.css'
+
 
 const Layout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -16,6 +17,7 @@ const Layout = () => {
 
   return (
     <>
+    <header>
       <nav>
         <ul>
           <li>
@@ -35,8 +37,8 @@ const Layout = () => {
           </li>
         </ul>
       </nav>
-
-      {currentUser.name}
+    </header>
+      <h1>{currentUser.name}</h1>
 
       <Outlet />
 
