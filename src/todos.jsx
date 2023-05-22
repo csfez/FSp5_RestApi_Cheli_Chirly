@@ -38,7 +38,7 @@ export default function App() {
       .then((response) => response.json())
       .then((data) => {
         // alert(JSON.stringify(data));
-  const updatedList = todosList.toSpliced(index,1,data);
+      const updatedList = todosList.toSpliced(index,1,data);
         setTodosList(updatedList);
         // console.timeEnd("timer1");
 
