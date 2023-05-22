@@ -17,10 +17,11 @@ import { useParams } from "react-router-dom";
 const Album = () => {
   const [photos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { id: albumId } = useParams();
 
   const fetchMorePhotos = async () => {
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/photos?_start=10&_limit=10');
+      const response = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}?_start=10&_limit=10`);
       const data = await response.json();
       setPhotos((prevPhotos) => [...prevPhotos, ...data]);
     } catch (error) {
@@ -47,7 +48,7 @@ const Album = () => {
   useEffect(() => {
     const fetchInitialPhotos = async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/photos?_start=0&_limit=10');
+        const response = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}?_start=10&_limit=10`);
         const data = await response.json();
         setPhotos(data);
         setIsLoading(false);
